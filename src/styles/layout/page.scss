@@ -1,0 +1,81 @@
+.app-page {
+  max-width: 900px;
+  margin: 16px auto;
+
+  background: $base-light;
+  border: 1px solid $base-dark;
+  border-radius: 8px;
+  padding: 32px;
+
+  position: relative;
+
+  &__header {
+    margin-bottom: 32px;
+    text-align: start;
+  }
+}
+// Input
+.app-input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  height: 36px;
+  line-height: 18px;
+  padding: 0 15px;
+  outline: none;
+
+  &:focus {
+    border: 1px solid $primary-dark;
+  }
+}
+// Button
+.app-button {
+  padding: 8px 20px;
+
+  background: transparent;
+  border-radius: 25px;
+  border: 2px solid $primary;
+  transition: 0.25s;
+  margin: 10px 4px 0;
+
+  &:hover,
+  &:focus {
+    background: $primary;
+    border: 2px solid $primary;
+    color: $on-primary;
+  }
+}
+
+.app-card {
+  max-width: 900px;
+  margin: 16px auto;
+
+  background: $base-light;
+  border: 1px solid $base-dark;
+  border-radius: 8px;
+  padding: 32px;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.snackbar-error {
+  background-color: $on-base;
+  color: $on-primary;
+
+  .mat-simple-snackbar-action {
+    color: $error;
+  }
+}

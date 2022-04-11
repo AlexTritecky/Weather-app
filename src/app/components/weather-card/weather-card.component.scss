@@ -1,0 +1,10 @@
+.delete {
+    display: flex;
+    justify-content: flex-end;
+}
+.temps{
+    display: flex;
+    &__max {
+        margin-right: 10px;
+    }
+}

@@ -1,0 +1,6 @@
+@import "styles/colors";
+:host-context(.is-invalid ) {
+    input {
+      border: 1px solid $error;
+    }
+  }
