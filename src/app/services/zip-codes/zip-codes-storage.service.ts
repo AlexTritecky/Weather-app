@@ -1,26 +1,26 @@
-import { Injectable } from "@angular/core";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { IStorage } from "@models//localstorage-obj.interface";
+import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { IStorage } from '@models//localstorage-obj.interface';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ZipCodesStorageService {
   locations: IStorage[] = [];
   localItems!: string | null;
   constructor(private snackBar: MatSnackBar) {
-    this.localItems = localStorage.getItem("locations");
+    this.localItems = localStorage.getItem('locations');
   }
 
   addZipCode(obj: IStorage) {
     if (this.locations.some((e) => e.zipcode === obj.zipcode)) {
-      this.snackBar.open(`This city already exist`, "Close", {
-        panelClass: "snackbar-error",
+      this.snackBar.open(`This city already exist`, 'Close', {
+        panelClass: 'snackbar-error',
       });
     } else {
       this.locations.push(obj);
-      
-      localStorage.setItem("locations", JSON.stringify(this.locations));
+
+      localStorage.setItem('locations', JSON.stringify(this.locations));
     }
   }
 
@@ -28,7 +28,7 @@ export class ZipCodesStorageService {
     let index = this.locations.findIndex((value) => value.zipcode === zipcode);
     if (index !== -1) {
       this.locations.splice(index, 1);
-      localStorage.setItem("locations", JSON.stringify(this.locations));
+      localStorage.setItem('locations', JSON.stringify(this.locations));
     }
   }
 
