@@ -3,7 +3,7 @@ import { IStorage } from '@models//localstorage-obj.interface';
 import { IWeatherResponse } from '@models//weather-card-response/weather-response.interface';
 import { WeatherService } from '@services/weather/weather.service';
 import { ZipCodesStorageService } from '@services/zip-codes/zip-codes-storage.service';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-weather-main',
@@ -12,13 +12,15 @@ import { map } from 'rxjs';
 })
 export class WeatherMainComponent {
   localObj!: IStorage;
-  weatherArray!: IStorage[];
+  weatherArray$: Observable<IStorage[]>;
   constructor(
     private service: WeatherService,
     private zipService: ZipCodesStorageService
-  ) {}
+  ) {
+    this.weatherArray$ = this.zipService.weatherData$;
+  }
 
-  addZipLocation(zipcode: string) {
+  addZipLocation(zipcode: string): void {
     this.service
       .loadWeatherCard(zipcode)
       .pipe(

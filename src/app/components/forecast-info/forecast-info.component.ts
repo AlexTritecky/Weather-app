@@ -14,10 +14,7 @@ export class ForecastInfoComponent implements OnInit {
   @Input() forecast!: IForecastResponse;
   dataSource = new MatTableDataSource<IForecastList>();
   displayedColumns = ['day', 'state', 'high', 'low', 'icon'];
-  constructor(
-    private service: WeatherService,
-    private router: Router
-  ) {}
+  constructor(public service: WeatherService, private router: Router) {}
 
   ngOnInit(): void {
     this.dataSource.data = this.forecast.list;
@@ -26,7 +23,7 @@ export class ForecastInfoComponent implements OnInit {
   getByIdIcon(id: number): string {
     return this.service.getIcons(id);
   }
-  navigate() {
-    this.router.navigate([''])
+  navigate(): void {
+    this.router.navigate(['']);
   }
 }

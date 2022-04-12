@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IStorage } from '@models//localstorage-obj.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ZipCodesStorageService {
   locations: IStorage[] = [];
-  localItems!: string | null;
+
+  private _localStorage: Storage;
+  private _weatherData$ = new BehaviorSubject<IStorage[]>(this.locations);
+  public weatherData$ = this._weatherData$.asObservable();
+
   constructor(private snackBar: MatSnackBar) {
-    this.localItems = localStorage.getItem('locations');
+    this._localStorage = localStorage;
+    this.getZipCodes();
   }
 
   addZipCode(obj: IStorage) {
@@ -20,7 +26,8 @@ export class ZipCodesStorageService {
     } else {
       this.locations.push(obj);
 
-      localStorage.setItem('locations', JSON.stringify(this.locations));
+      this._localStorage.setItem('locations', JSON.stringify(this.locations));
+      this._weatherData$.next(this.locations);
     }
   }
 
@@ -28,13 +35,17 @@ export class ZipCodesStorageService {
     let index = this.locations.findIndex((value) => value.zipcode === zipcode);
     if (index !== -1) {
       this.locations.splice(index, 1);
-      localStorage.setItem('locations', JSON.stringify(this.locations));
+
+      this._localStorage.setItem('locations', JSON.stringify(this.locations));
+      this._weatherData$.next(this.locations);
     }
   }
 
-  getZipCodes(): IStorage[] {
-    this.locations =
-      this.localItems !== null ? JSON.parse(this.localItems) : [];
-    return this.locations;
+  getZipCodes() {
+    const data = this._localStorage.getItem('locations');
+    if (data) {
+      this.locations = JSON.parse(data);
+      this._weatherData$.next(this.locations);
+    }
   }
 }

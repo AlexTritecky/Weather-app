@@ -45,5 +45,6 @@ export class SearchComponent implements OnInit {
       return;
     }
     this.addZipCode.emit(this.form.value.zipCode);
+    this.form.reset();
   }
 }

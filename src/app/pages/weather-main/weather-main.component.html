@@ -6,4 +6,4 @@
     <app-search (addZipCode)="addZipLocation($event)"></app-search>
   </div>
 </div>
-<app-weather-card></app-weather-card>
+<app-weather-card *ngIf="weatherArray$ | async as weatherArray" [weatherArray]="weatherArray"></app-weather-card>
