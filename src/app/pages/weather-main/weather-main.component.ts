@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IStorage } from '@models//localstorage-obj.interface';
 import { IWeatherResponse } from '@models//weather-card-response/weather-response.interface';
 import { WeatherService } from '@services/weather/weather.service';
@@ -10,15 +10,13 @@ import { map } from 'rxjs';
   templateUrl: './weather-main.component.html',
   styleUrls: ['./weather-main.component.scss'],
 })
-export class WeatherMainComponent implements OnInit {
+export class WeatherMainComponent {
   localObj!: IStorage;
   weatherArray!: IStorage[];
   constructor(
     private service: WeatherService,
     private zipService: ZipCodesStorageService
   ) {}
-
-  ngOnInit(): void {}
 
   addZipLocation(zipcode: string) {
     this.service

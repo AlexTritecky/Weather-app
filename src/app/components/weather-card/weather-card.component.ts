@@ -10,17 +10,19 @@ import { ZipCodesStorageService } from '@services/zip-codes/zip-codes-storage.se
 })
 export class WeatherCardComponent {
   weatherArray: IStorage[];
+
   constructor(
     private zipService: ZipCodesStorageService,
-    public service: WeatherService
+    private service: WeatherService
   ) {
     this.weatherArray = this.zipService.getZipCodes();
   }
-  getById(id: number): string {
+
+  getByIdIcon(id: number): string {
     return this.service.getIcons(id);
   }
+
   remove(zipcode: string) {
-    console.log(123, zipcode);
     this.zipService.removeZipCode(zipcode);
   }
 }

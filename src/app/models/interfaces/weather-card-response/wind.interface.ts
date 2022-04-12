@@ -1,5 +1,5 @@
-export interface IWind{
-    deg: number;
-    gust: number;
-    speed:number;
+export interface IWind {
+  deg: number;
+  gust: number;
+  speed: number;
 }

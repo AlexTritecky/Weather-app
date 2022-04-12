@@ -17,7 +17,9 @@
         *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)"
         class="invalid-feedback"
       >
-        <div class="error" *ngIf="zipCode.errors?.['required']">This field is required.</div>
+        <div class="error" *ngIf="zipCode.errors?.['required']">
+          This field is required.
+        </div>
         <div class="error" *ngIf="zipCode.errors?.['minlength']">
           This field must have at least 5 character.
         </div>

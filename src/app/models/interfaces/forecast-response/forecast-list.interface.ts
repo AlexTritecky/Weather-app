@@ -1,17 +1,20 @@
-import { ICloud } from '../weather-card-response/cloud.interface';
 import { IWeather } from '../weather-card-response/weather.interface';
-import { IWind } from '../weather-card-response/wind.interface';
-import { IForecastMain } from './forecast-main.interface';
-import { IForecastSystem } from './forecast-sys.interface';
+import { IFeelsLike } from './forecast-feels-like.interface';
+import { IForecastTemp } from './forecast-temp.interface';
 
 export interface IForecastList {
-  clouds: ICloud;
+  clouds: number;
+  deg: number;
   dt: number;
-  dt_txt: string;
-  main: IForecastMain;
+  feels_like: IFeelsLike;
+  gust: number;
+  humidity: number;
   pop: number;
-  sys: IForecastSystem;
-  visibility: number;
+  pressure: number;
+  rain: number;
+  speed: number;
+  sunrise: number;
+  sunset: number;
+  temp: IForecastTemp;
   weather: IWeather[];
-  wind: IWind;
 }

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   url: 'http://api.openweathermap.org/data/2.5',
-  appId: '63ce0629633e56a1c1e1ccd7c0c68270',
+  appId: '5a4b2d457ecbef9eb2a71e480b947604',
   iconUrl: 'https://www.angulartraining.com/images',
 };
 /*

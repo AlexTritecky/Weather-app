@@ -29,7 +29,7 @@ export class WeatherService {
 
   getForecast(zipcode: string): Observable<IForecastResponse> {
     return this.http.get<IForecastResponse>(
-      `${environment.url}/forecast?zip=${zipcode},us&units=imperial&cnt=5&APPID=${environment.appId}`
+      `${environment.url}/forecast/daily?zip=${zipcode},us&units=metric&cnt=5&APPID=${environment.appId}`
     );
   }
 

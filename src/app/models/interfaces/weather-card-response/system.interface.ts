@@ -1,7 +1,7 @@
 export interface ISystem {
-    country: string;
-    id: number;
-    sunrise: number;
-    sunset: number;
-    type: number;
-  }
+  country: string;
+  id: number;
+  sunrise: number;
+  sunset: number;
+  type: number;
+}

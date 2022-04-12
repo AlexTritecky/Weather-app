@@ -1,23 +1,30 @@
 <div class="cards-info" *ngIf="weatherArray">
   <div class="app-card" *ngFor="let item of weatherArray">
-      <div class="delete">
-        <app-button (click)="remove(item.zipcode)">X</app-button>
-      </div>
-<div class="app-card__container">
-    <div class="app-card__text">
+    <div class="delete">
+      <app-button (click)="remove(item.zipcode)">X</app-button>
+    </div>
+    <div class="app-card__container">
+      <div class="app-card__text">
         <h3>Name : {{ item.weatherData.name }}</h3>
         <p>Current Condition : {{ item.weatherData.weather[0].main }}</p>
-        <p>
-          Temperature: {{ item.weatherData.main.temp | number: ".0-0" }}
-        </p>
+        <p>Temperature: {{ item.weatherData.main.temp | number: ".0-0" }}</p>
         <div class="temps">
-          <p class="temps__max">Max today: {{ item.weatherData.main.temp_max | number: ".0-0" }}</p>
-          <p>Min today: {{ item.weatherData.main.temp_min | number: ".0-0" }}</p>
+          <p class="temps__max">
+            Max today: {{ item.weatherData.main.temp_max | number: ".0-0" }}
+          </p>
+          <p>
+            Min today: {{ item.weatherData.main.temp_min | number: ".0-0" }}
+          </p>
         </div>
+        <a
+          [routerLink]="['forecast/' + item.zipcode]"
+          routerLinkActive="router-link-active"
+          >Go to the 5days forecast</a
+        >
       </div>
       <div class="app-card__content">
-        <img [src]="getById(item.weatherData.weather[0].id)" alt="" />
+        <img [src]="getByIdIcon(item.weatherData.weather[0].id)" alt="" />
       </div>
-</div>
+    </div>
   </div>
 </div>

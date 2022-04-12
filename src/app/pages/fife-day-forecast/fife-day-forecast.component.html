@@ -1,0 +1,8 @@
+<div class="app-page">
+  <div class="wrapper">
+    <app-forecast-info
+      *ngIf="forecastData$ | async as forecastData"
+      [forecast]="forecastData"
+    ></app-forecast-info>
+  </div>
+</div>
