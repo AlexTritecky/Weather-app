@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ButtonType, BUTTON_TYPES_ENUM } from '@enum//button-type.enum';
 import { ZipCodesStorageService } from '@services/zip-codes/zip-codes-storage.service';
 
@@ -9,12 +9,12 @@ import { ZipCodesStorageService } from '@services/zip-codes/zip-codes-storage.se
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   submit: ButtonType;
 
   @Output() addZipCode: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.submit = BUTTON_TYPES_ENUM.SUBMIT;
   }
 
