@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { IForecastResponse } from '@models//forecast-response/forecast-response.interface';
 import { IWeatherResponse } from '@models//weather-card-response/weather-response.interface';
 

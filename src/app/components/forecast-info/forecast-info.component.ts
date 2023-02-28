@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { Router } from '@angular/router';
 import { IForecastList } from '@models//forecast-response/forecast-list.interface';
 import { IForecastResponse } from '@models//forecast-response/forecast-response.interface';

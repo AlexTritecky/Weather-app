@@ -6,9 +6,9 @@ import { WeatherMainComponent } from './weather-main.component';
 import { SearchModule } from '@components/search/search.module';
 import { WeatherCardModule } from '@components/weather-card/weather-card.module';
 import {
-  MAT_SNACK_BAR_DEFAULT_OPTIONS,
-  MatSnackBarModule,
-} from '@angular/material/snack-bar';
+  MAT_LEGACY_SNACK_BAR_DEFAULT_OPTIONS as MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatLegacySnackBarModule as MatSnackBarModule,
+} from '@angular/material/legacy-snack-bar';
 
 @NgModule({
   declarations: [WeatherMainComponent],
