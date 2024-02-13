@@ -15,10 +15,10 @@
         "app/pages/*"
       ],
       "@enum/*": [
-        "app/models/enums*"
+        "app/models/enums/*"
       ],
       "@models/*": [
-        "app/models/interfaces*"
+        "app/models/interfaces/*"
       ],
       "@services/*": [
         "app/services/*"
