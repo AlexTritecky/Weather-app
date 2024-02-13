@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IStorage } from '@models//localstorage-obj.interface';
+import { IStorage } from '@models/localstorage-obj.interface';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -7,45 +7,52 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class ZipCodesStorageService {
-  locations: IStorage[] = [];
-
-  private _localStorage: Storage;
-  private _weatherData$ = new BehaviorSubject<IStorage[]>(this.locations);
-  public weatherData$ = this._weatherData$.asObservable();
+  private locations: IStorage[] = [];
+  private readonly localStorageKey = 'locations';
+  private weatherDataSubject = new BehaviorSubject<IStorage[]>([]);
+  public weatherData$ = this.weatherDataSubject.asObservable();
 
   constructor(private snackBar: MatSnackBar) {
-    this._localStorage = localStorage;
-    this.getZipCodes();
+    this.loadZipCodes();
+  }
+
+  private notify(
+    message: string,
+    action: string = 'Close',
+    panelClass: string = 'snackbar-error'
+  ) {
+    this.snackBar.open(message, action, { panelClass });
+  }
+
+  private saveLocationsToStorage() {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.locations));
+    this.weatherDataSubject.next(this.locations);
+  }
+
+  private loadZipCodes() {
+    const data = localStorage.getItem(this.localStorageKey);
+    if (data) {
+      this.locations = JSON.parse(data);
+      this.weatherDataSubject.next(this.locations);
+    }
   }
 
   addZipCode(obj: IStorage) {
     if (this.locations.some((e) => e.zipcode === obj.zipcode)) {
-      this.snackBar.open(`This city already exist`, 'Close', {
-        panelClass: 'snackbar-error',
-      });
-    } else {
-      this.locations.push(obj);
-
-      this._localStorage.setItem('locations', JSON.stringify(this.locations));
-      this._weatherData$.next(this.locations);
+      this.notify('This city already exists');
+      return;
     }
+    this.locations.push(obj);
+    this.saveLocationsToStorage();
   }
 
   removeZipCode(zipcode: string) {
-    let index = this.locations.findIndex((value) => value.zipcode === zipcode);
+    const index = this.locations.findIndex(
+      (value) => value.zipcode === zipcode
+    );
     if (index !== -1) {
       this.locations.splice(index, 1);
-
-      this._localStorage.setItem('locations', JSON.stringify(this.locations));
-      this._weatherData$.next(this.locations);
-    }
-  }
-
-  getZipCodes() {
-    const data = this._localStorage.getItem('locations');
-    if (data) {
-      this.locations = JSON.parse(data);
-      this._weatherData$.next(this.locations);
+      this.saveLocationsToStorage();
     }
   }
 }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IStorage } from '@models//localstorage-obj.interface';
 import { IWeatherResponse } from '@models//weather-card-response/weather-response.interface';
-import { WeatherService } from '@services/weather/weather.service';
+import { WeatherService } from '@services/weather-service/weather-service.service';
+
 import { ZipCodesStorageService } from '@services/zip-codes/zip-codes-storage.service';
 import { map, Observable } from 'rxjs';
 
